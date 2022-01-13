@@ -19,5 +19,4 @@ jobs:
     - name: Build the Docker image
       run: |
         docker build . --tag ghcr.io/save-sut/docker-gs-ping:latest
-        docker run ghcr.io/save-sut/docker-gs-ping:latest
         docker push ghcr.io/save-sut/docker-gs-ping:latest
