@@ -35,18 +35,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-buildx-
 
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Build Docker image
         uses: docker/build-push-action@v2
         with:
           builder: ${{ steps.buildx.outputs.name }}
-          push:    false
+          push:    true
           load:    true
           tags: ${{ github.event.repository.name }}:latest, ${{ github.repository }}:latest
           cache-from: type=local,src=/tmp/.buildx-cache
